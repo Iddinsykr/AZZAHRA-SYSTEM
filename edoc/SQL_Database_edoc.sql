@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 27, 2025 at 03:54 AM
+-- Generation Time: Jul 31, 2025 at 04:43 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `aid` int DEFAULT NULL,
+  `aid` int NOT NULL,
   `aemail` varchar(255) NOT NULL,
   `apassword` varchar(255) DEFAULT NULL,
   `pid` int DEFAULT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`aid`, `aemail`, `apassword`, `pid`, `docid`) VALUES
-(NULL, 'admin@azzahra.com', 'admin12', 0, 0);
+(1, 'admin@azzahra.com', 'admin12', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -97,7 +97,10 @@ INSERT INTO `appointment` (`appoid`, `pid`, `apponum`, `scheduleid`, `appodate`,
 (72, 33, 3, 35, '2025-07-26', 'Approved'),
 (73, 25, 4, 35, '2025-07-26', 'Approved'),
 (74, 38, 4, 34, '2025-07-26', 'Rejected'),
-(75, 38, 3, 36, '2025-07-27', 'Approved');
+(75, 38, 3, 36, '2025-07-27', 'Approved'),
+(76, 39, 3, 42, '2025-07-27', 'Approved'),
+(77, 38, 5, 37, '2025-07-28', 'Rejected'),
+(78, 40, 5, 34, '2025-07-28', 'Approved');
 
 -- --------------------------------------------------------
 
@@ -163,7 +166,8 @@ INSERT INTO `patient` (`pid`, `pemail`, `pname`, `ppassword`, `paddress`, `pnic`
 (34, 'khairulazman@mail.com', 'Khairul Azman	 Aziz', 'AzmanPass#88', '65, Kg. Pulau Rusa, 26600 Pekan	', '931010-10-5556	', '1993-10-10', '0188888777'),
 (35, 'haniramli@mail.com', 'Hani Ramli', 'HaniSecure22', '17, Taman Desa Raya, 26600 Pekan', '961111-11-6667	', '1996-11-11', '0172233112'),
 (36, 'hakimroslan@mail.com', 'Hakim Roslan', 'Hakim@Doc12', '55, Kg. Ganchong, 26600 Pekan	', '920909-09-7778	', '1992-09-09', '0196677889'),
-(38, 'iddinsykr6@gmail.com', 'iddin syakir', 'iddin26_', 'rpt mengkebang', '03062610437', '2003-06-26', '0139260515');
+(38, 'iddinsykr6@gmail.com', 'iddin syakir', 'iddin26_', 'rpt mengkebang', '03062610437', '2003-06-26', '0139260515'),
+(40, 'farahfarhanayahaya@gmail.com', 'farah farhana', 'farah02', 'pendang, kedah', '0205102020924', '2009-05-10', '0195790102');
 
 -- --------------------------------------------------------
 
@@ -194,7 +198,8 @@ INSERT INTO `schedule` (`scheduleid`, `docid`, `title`, `scheduledate`, `schedul
 (37, 22, 'Nebulizer & Pediatric Treatment', '2025-09-11', '14:00:00', 5),
 (36, 21, 'Chronic Pain Management', '2025-09-10', '14:00:00', 5),
 (35, 20, 'Pregnancy Screening & Health Check', '2025-09-07', '10:00:00', 4),
-(34, 19, 'Minor Surgery & Wound Care', '2025-09-06', '08:00:00', 5);
+(34, 19, 'Minor Surgery & Wound Care', '2025-09-06', '08:00:00', 5),
+(44, 22, 'Pregnancy Screening & Health Check', '2025-07-28', '12:49:00', 1);
 
 -- --------------------------------------------------------
 
@@ -255,7 +260,8 @@ INSERT INTO `webuser` (`email`, `usertype`) VALUES
 ('khairulazman@mail.com', 'p'),
 ('haniramli@mail.com', 'p'),
 ('hakimroslan@mail.com', 'p'),
-('iddinsykr6@gmail.com', 'p');
+('iddinsykr6@gmail.com', 'p'),
+('farahfarhanayahaya@gmail.com', 'p');
 
 --
 -- Indexes for dumped tables
@@ -265,7 +271,7 @@ INSERT INTO `webuser` (`email`, `usertype`) VALUES
 -- Indexes for table `admin`
 --
 ALTER TABLE `admin`
-  ADD PRIMARY KEY (`aemail`);
+  ADD PRIMARY KEY (`aid`);
 
 --
 -- Indexes for table `appointment`
@@ -312,10 +318,16 @@ ALTER TABLE `webuser`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `aid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `appoid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `appoid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT for table `doctor`
@@ -327,13 +339,13 @@ ALTER TABLE `doctor`
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `pid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `pid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `scheduleid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `scheduleid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

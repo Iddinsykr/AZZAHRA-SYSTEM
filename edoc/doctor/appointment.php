@@ -149,26 +149,15 @@ FROM schedule
 INNER JOIN appointment ON schedule.scheduleid = appointment.scheduleid
 INNER JOIN patient ON patient.pid = appointment.pid
 INNER JOIN doctor ON schedule.docid = doctor.docid
-WHERE doctor.docid = $userid
-ORDER BY appointment.appodate DESC";
+WHERE doctor.docid = $userid";
 
+if ($_POST && !empty($_POST["sheduledate"])) {
+    $sheduledate = $_POST["sheduledate"];
+    $sqlmain .= " AND schedule.scheduledate = '$sheduledate'";
+}
 
-                    if($_POST){
-                        //print_r($_POST);
-                        
+$sqlmain .= " ORDER BY appointment.appodate DESC";  // ✅ Always append ORDER BY at the end
 
-
-                        
-                        if(!empty($_POST["sheduledate"])){
-                            $sheduledate=$_POST["sheduledate"];
-                            $sqlmain.=" and schedule.scheduledate='$sheduledate' ";
-                        };
-
-                        
-
-                        //echo $sqlmain;
-
-                    }
 
 
                 ?>

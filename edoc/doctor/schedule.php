@@ -285,7 +285,11 @@
             $nop=$row['nop'];
 
 
-            $sqlmain12= "select * from appointment inner join patient on patient.pid=appointment.pid inner join schedule on schedule.scheduleid=appointment.scheduleid where schedule.scheduleid=$id;";
+            $sqlmain12 = "SELECT * FROM appointment 
+INNER JOIN patient ON patient.pid = appointment.pid 
+INNER JOIN schedule ON schedule.scheduleid = appointment.scheduleid 
+WHERE schedule.scheduleid = $id 
+ORDER BY appointment.apponum ASC;";
             $result12= $database->query($sqlmain12);
             echo '
             <div id="popup1" class="overlay">
